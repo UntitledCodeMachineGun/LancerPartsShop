@@ -1,0 +1,22 @@
+﻿<html lang="en">
+
+    <head>
+        <title>Razborka</title>
+
+    @await Html.PartialAsync("MetaTagPartial")
+    @await Html.PartialAsync("CssPartial")
+    @await Html.PartialAsync("ScriptsPartial")
+
+    </head>
+    
+    <body>
+
+        @await Html.PartialAsync("HeaderPartial")
+
+            @RenderBody()
+
+        @await Html.PartialAsync("FooterPartial")
+
+    </body>
+    
+    </html>
