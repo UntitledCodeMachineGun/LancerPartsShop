@@ -1,4 +1,4 @@
-*:focus {
+~ /images/slide1.jpg*:focus {
     outline: -webkit-focus-ring-color auto 0px !important;
 }
 
@@ -77,6 +77,10 @@ header .navbar.nav-2 .navbar-collapse a {
 
 .carousel-caption {
     background-color: rgba(0, 0, 0, 0.65)
+}
+
+.category-carousel-item {
+    max-width: 878px;
 }
 
 .categories {
