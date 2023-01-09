@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/LancerPartsShop/appsettings.json
+/LancerPartsShop/appsettings.production.json
+/LancerPartsShop/appsettings.staging.json
