@@ -243,6 +243,12 @@ header .navbar.nav-2 .navbar-collapse a {
     width: 300px;
 }
 
+    .card .blog-card-text {
+        height: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     .card:hover {
         border-style: solid;
         border-radius: 0.25rem;
@@ -271,6 +277,31 @@ header .navbar.nav-2 .navbar-collapse a {
     .post .container img {
         width: 100%;
     }
+
+/* ADMIN */
+.div-box {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.logout {
+    display: flex;
+    justify-content: flex-end;
+}
+/* END ADMIN */
+
+.img-thumbnail {
+    max-width: 200px;
+}
+/* Errors */
+.validation-summary-errors ul {
+    list-style: none;
+    color: rgba(128,0,0, 0.7);
+    margin: 20px;
+    position: inherit;
+}
+
+/* Errors end */
 
 @media screen and (max-width: 900px) {
     .cat-container {

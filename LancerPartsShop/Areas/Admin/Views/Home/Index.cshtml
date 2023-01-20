@@ -1,0 +1,48 @@
+﻿@model IQueryable<BlogItem>
+@{
+	string pageTitle = "Admin panel";
+	ViewBag.Title = pageTitle;
+}
+
+<section class="admin__panel">
+	<div class="container">
+		<h1>@pageTitle</h1>
+		<div>
+			<h3>Blog items</h3>
+			<div class="div-box">
+				<a asp-area="Admin" asp-controller="BlogItems" asp-action="Edit" asp-route-id="" class="btn btn-outline-primary">Add news</a>
+			</div>
+			@if (Model.Any())
+			{
+				<div>
+					@foreach(BlogItem item in Model)
+					{
+						<div>
+							<a asp-area="Admin" asp-controller="BlogItems" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-success">Edit</a>
+							|
+							<form style="display: inline-block;" id="form-@item.Id" asp-area="Admin" asp-controller="BlogItems" asp-action="Delete" asp-route-id="@item.Id">
+								<input type="hidden" name="id" value="@item.Id" />
+								<a href="#" onclick="document.getElementById('form-@item.Id').submit();" class="btn btn-outline-danger">Delete</a>
+							</form>
+							|
+							<a asp-area="" asp-controller="Blog" asp-action="Index" asp-route-id="@item.Id" class="btn btn-outline-info">
+								@($"{item.Name}")
+							</a>
+						</div>
+					}
+				</div>	
+			}
+		</div>
+	</div>
+	<div class="div-box container">
+		<h3>Edit site pages</h3>
+		<a asp-asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageIndex" class="btn btn-outline-success">Home</a>
+		<a asp-asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageBlog" class="btn btn-outline-success">Blog</a>
+		<a asp-asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="ContactsPage" class="btn btn-outline-success">Contacts</a>
+	</div>
+	<div class="div-box container logout">
+		<form asp-area="" asp-controller="Account" asp-action="Logout" method="post" class="btn btn-outline-danger">
+			<input type="submit" value="Log out"/>
+		</form>
+	</div>
+</section>
