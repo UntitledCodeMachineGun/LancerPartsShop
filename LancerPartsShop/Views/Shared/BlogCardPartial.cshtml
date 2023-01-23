@@ -1,13 +1,11 @@
-﻿<div class="blog-container container mt-5 col-12">
+﻿@model BlogItem
     <div class="card news-card p-3 bg-white">
-        <img src="~/images/slide3.jpg" alt="news">
+        <img src="~/images/@Model.TitleImagePath" alt="news">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
+            <h5 class="card-title">@Model.Name</h5>
             <p class="card-text blog-card-text">
-                Some quick example text to build on the card title and make up the bulk of the card's
-                content.
+                @Model.Subtitle
             </p>
-            <a href="/post" class="btn btn-outline-secondary">Go somewhere</a>
+            <a asp-area="" asp-controller="Post" asp-action="Post" asp-route-id="@Model.Id" class="btn btn-outline-secondary">See more</a>
         </div>
     </div>
-</div>

@@ -2,29 +2,25 @@
     <!-- nav-1 -->
     <nav class="navbar navbar-expand-lg navbar-light border-bottom">
         <div class="container-fluid col-10">
-            <a class="navbar-brand" href="/">Navbar</a>
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@Config.CompanyName</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link disabled">Время работы</a>
+                        <a class="nav-link disabled">Mon-Fri</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled">Время работы</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Время работы</a>
+                        <a class="nav-link disabled">9:00-21:00</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Контакты
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="tel:@Config.CompanyPhoneShort">@Config.CompanyPhone</a></li>
+                            <li><a class="dropdown-item" href="mailto:@Config.CompanyEmail">@Config.CompanyEmail</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -41,25 +37,14 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item border-end">
-                        <a class="nav-link" href="/blog">Blog</a>
+                        <a class="nav-link @Html.IsActive("Blog", "Blog")" asp-area="" asp-action="Blog" asp-controller="Blog" asp-route-id="">Blog</a>
                     </li>
                     <li class="nav-item border-end">
-                        <a class="nav-link">Страница</a>
-                    </li>
-                    <li class="nav-item border-end">
-                        <a class="nav-link">Страница</a>
-                    </li>
-                    <li class="nav-item border-end">
-                        <a class="nav-link">Страница</a>
-                    </li>
-                    <li class="nav-item border-end">
-                        <a class="nav-link">Страница</a>
-                    </li>
-                    <li class="nav-item border-end">
-                        <a class="nav-link">Страница</a>
+                        <a class="nav-link @Html.IsActive("Contacts", "Contacts")" asp-area="" asp-action="Contacts" asp-controller="Contacts" asp-route-id="">Contacts</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
+

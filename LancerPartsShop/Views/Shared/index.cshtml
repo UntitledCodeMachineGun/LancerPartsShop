@@ -1,4 +1,9 @@
-﻿@model TextField
+﻿@model PageViewModel
+@{
+    ViewBag.Title = Model.TextField.MetaTitle;
+    ViewBag.Description = Model.TextField.MetaDescription;
+    ViewBag.Keywords = Model.TextField.MetaKeyords;
+}
 
 <section class="slider">
     <div class="container container-carousel">
@@ -47,18 +52,19 @@
         <h3>Последние новости</h3>
         </div>
     <div class="news-container container mt-5 col-12">
-        
-
-        @{
-            await Html.RenderPartialAsync("BlogCardPartial.cshtml");
+        @if (Model.BlogItems.Any())
+        {
+            @foreach (var item in Model.BlogItems.Take(4))
+            {
+                await Html.RenderPartialAsync("BlogCardPartial.cshtml", item);
+            }
         }
-
     </div>
 </section>
 
 <section class="text">
     <div class="container">
-        <h2>Text Header</h2>
-        sdadas
+        <h2>@Html.Raw(Model.TextField.Name)</h2>
+        @Html.Raw(Model.TextField.Description)
     </div>
 </section>

@@ -198,7 +198,7 @@ header .navbar.nav-2 .navbar-collapse a {
 
 .news-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: row;
     flex-wrap: nowrap;
 }

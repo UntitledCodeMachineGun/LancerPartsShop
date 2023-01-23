@@ -6,11 +6,14 @@ namespace LancerPartsShop.Domain
 	{
 		public ITextFieldsRepository TextFields {get; set;}
 		public IBlogItemRepository BlogItems { get; set; }
+		public ICategoryRepository Categories { get; set; }
 
-		public DataManager(ITextFieldsRepository textFields, IBlogItemRepository blogItems)
+		public DataManager(ITextFieldsRepository textFields, IBlogItemRepository blogItems, ICategoryRepository categories)
 		{
 			TextFields = textFields;
 			BlogItems = blogItems;
-		}
+			Categories = categories;
+
+        }
 	}
 }

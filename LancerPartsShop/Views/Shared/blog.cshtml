@@ -1,4 +1,9 @@
-﻿@*In nav class "active" avalible*@
+﻿@model PageViewModel
+@{
+    ViewBag.Title = Model.TextField.MetaTitle;
+    ViewBag.Description = Model.TextField.MetaDescription;
+    ViewBag.Keywords = Model.TextField.MetaKeyords;
+}
 
 <section class="blog">
     <div class="container">
@@ -6,7 +11,12 @@
     </div>
     <div class="blog-container container mt-5 col-12">
 
-        @await Html.PartialAsync("BlogCardPartial")
-
+        @if (Model.BlogItems.Any())
+        {
+            @foreach (var item in Model.BlogItems)
+            {
+                @await Html.PartialAsync("BlogCardPartial", item)
+            }
+        }
     </div>
 </section>
