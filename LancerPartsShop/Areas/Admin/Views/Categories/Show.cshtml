@@ -1,0 +1,35 @@
+﻿@model IQueryable<Category>
+
+@{
+	string pageTitle = "Categoris";
+	ViewBag.Title = pageTitle;
+}
+
+<section class="admin__panel">
+	<div class="container">
+		<h3>Categories</h3>
+		<div class="div-box">
+			<a asp-area="Admin" asp-controller="Categories" asp-action="Edit" asp-route-id="" class="btn btn-outline-primary">Add new</a>
+		</div>
+		@if (Model.Any())
+		{
+			<div>
+				@foreach (var item in Model)
+				{
+					<div>
+						<span class="btn btn-outline-info">
+							@($"{item.Name}")
+						</span>
+						|
+						<a asp-area="Admin" asp-controller="Categories" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-success">Edit</a>
+						|
+						<form style="display: inline-block;" id="form-@item.Id" asp-area="Admin" asp-controller="Categories" asp-action="Delete" asp-route-id="@item.Id">
+						<input type="hidden" name="id" value="@item.Id" />
+						<a href="#" onclick="document.getElementById('form-@item.Id').submit();" class="btn btn-outline-danger">Delete</a>
+						</form>
+					</div>
+				}
+			</div>	
+		}
+	</div>
+</section>

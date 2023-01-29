@@ -6,26 +6,33 @@ using Microsoft.AspNetCore.Mvc;
 namespace LancerPartsShop.Areas.Admin.Controllers
 {
 	[Area("Admin")]
-	public class BlogItemsController : Controller
+	public class CategoriesController : Controller
 	{
 		private readonly DataManager dataManager;
 		private readonly IWebHostEnvironment hostEnvironment;
+
 		private readonly string[] _extensions = new string[] { ".jpg", ".png" };
 
-		public BlogItemsController(DataManager dataManager, IWebHostEnvironment hostEnvironment)
+		public CategoriesController(DataManager dataManager, IWebHostEnvironment hostEnvironment)
 		{
 			this.dataManager = dataManager;
 			this.hostEnvironment = hostEnvironment;
 		}
 
+		public IActionResult Show()
+		{ 
+			return View(dataManager.Categories.GetCategories());
+		}
+
 		public IActionResult Edit(Guid id)
 		{
-			var item = id == default ? new BlogItem() : dataManager.BlogItems.GetBlogItem(id);
+			var item = id == default ? new Category() : dataManager.Categories.GetCategory(id);
 			return View(item);
 		}
 
 		[HttpPost]
-		public IActionResult Edit(BlogItem model, IFormFile? titleImageFile)
+
+		public IActionResult Edit(Category model, IFormFile? titleImageFile)
 		{
 			IsImage(titleImageFile, _extensions);
 			if (!ModelState.IsValid)
@@ -33,24 +40,24 @@ namespace LancerPartsShop.Areas.Admin.Controllers
 				return View(model);
 			}
 
-			
+
 
 			if (titleImageFile != null)
 			{
 				model.TitleImagePath = titleImageFile.FileName;
-				using (var fs = new FileStream(Path.Combine(hostEnvironment.WebRootPath, "images/", titleImageFile.FileName), FileMode.Create))
+				using (var fs = new FileStream(Path.Combine(hostEnvironment.WebRootPath, "images/categories", titleImageFile.FileName), FileMode.Create))
 				{
 					titleImageFile.CopyTo(fs);
 				}
 			}
-			dataManager.BlogItems.SaveBlogItem(model);
+			dataManager.Categories.SaveCategory(model);
 			return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
 		}
 
 		[HttpPost]
 		public IActionResult Delete(Guid id)
 		{
-			dataManager.BlogItems.DeleteBlogItem(id);
+			dataManager.Categories.DeleteCategory(id);
 			return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
 		}
 

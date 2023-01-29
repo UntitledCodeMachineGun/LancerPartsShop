@@ -8,6 +8,7 @@ namespace LancerPartsShop.Areas.Admin.Controllers
 	{
 		private readonly DataManager dataManager;
 
+		
 		public HomeController(DataManager dataManager)
 		{
 			this.dataManager = dataManager;

@@ -18,6 +18,7 @@ namespace LancerPartsShop.Controllers
 			var model = new PageViewModel();
 			model.TextField = dataManager.TextFields.GetTextFieldByCodeWord("PageIndex");
 			model.BlogItems = dataManager.BlogItems.GetBlogItems();
+			model.Categories = dataManager.Categories.GetCategories();
 
             return View(model);
 		}

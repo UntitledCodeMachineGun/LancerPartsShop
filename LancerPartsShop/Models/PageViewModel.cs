@@ -6,5 +6,7 @@ namespace LancerPartsShop.Models
     {
         public TextField TextField { get; set; }
         public IQueryable<BlogItem> BlogItems { get; set; }
+
+        public IQueryable<Category> Categories { get; set; }
     }
 }

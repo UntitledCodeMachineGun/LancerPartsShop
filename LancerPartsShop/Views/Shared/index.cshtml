@@ -40,9 +40,13 @@
     <div class="container">
         <h3>Категории</h3>
         <div class="cat-container row">
-
-            @{await Html.RenderPartialAsync("CategoryCardPartial");}
-
+            @if (Model.Categories.Any())
+            {
+                @foreach (var item in Model.Categories)
+                {
+                    await Html.RenderPartialAsync("CategoryCardPartial", item);
+                }
+            }
         </div>
     </div>
 </section>

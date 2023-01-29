@@ -23,6 +23,7 @@ builder.Services.AddControllersWithViews(x =>
 //connect functional of app as services
 builder.Services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
 builder.Services.AddTransient<IBlogItemRepository, EFBlogRepository>();
+builder.Services.AddTransient<ICategoryRepository, EFICategoryRepository>();
 builder.Services.AddTransient<DataManager>();
 
 //Connect configuration from appsettings.json

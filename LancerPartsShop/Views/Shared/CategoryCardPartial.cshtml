@@ -1,4 +1,6 @@
-﻿<a href="/category" class="category col-5">
-    <span class="name col-6">Категория</span>
-    <img src="~/images/catgory1.jpg" alt="" class="col-2">
+﻿@model Category
+
+<a href="/category" class="category col-5">
+    <span class="name col-6">@Model.Name</span>
+    <img src="~/images/categories/@Model.TitleImagePath" alt="@Model.Name" class="col-2">
 </a>

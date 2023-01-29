@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LancerPartsShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230120173140__initial")]
+    [Migration("20230128202415__initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace LancerPartsShop.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.1")
+                .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -56,12 +56,48 @@ namespace LancerPartsShop.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TitleImagePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("BlogItems");
+                });
+
+            modelBuilder.Entity("LancerPartsShop.Domain.Entities.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaKeyords")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subtitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("LancerPartsShop.Domain.Entities.TextField", b =>
@@ -98,7 +134,6 @@ namespace LancerPartsShop.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TitleImagePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -110,28 +145,28 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = new Guid("deae2a12-08d2-4ef7-be64-f47d18264ca0"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2023, 1, 20, 17, 31, 40, 534, DateTimeKind.Utc).AddTicks(7047),
+                            DateAdded = new DateTime(2023, 1, 28, 20, 24, 15, 711, DateTimeKind.Utc).AddTicks(2324),
                             Description = "Index page",
                             Name = "Lancer Parts",
-                            TitleImagePath = "~/img/slider1.png"
+                            TitleImagePath = "slide1.jpg"
                         },
                         new
                         {
                             Id = new Guid("3e23fdbf-2c09-484e-bff4-ac7acefae890"),
                             CodeWord = "PageBlog",
-                            DateAdded = new DateTime(2023, 1, 20, 17, 31, 40, 534, DateTimeKind.Utc).AddTicks(7063),
+                            DateAdded = new DateTime(2023, 1, 28, 20, 24, 15, 711, DateTimeKind.Utc).AddTicks(2339),
                             Description = "Blog page",
                             Name = "Blog | Lancer Parts",
-                            TitleImagePath = "~/img/slider1.png"
+                            TitleImagePath = "slide1.jpg"
                         },
                         new
                         {
                             Id = new Guid("3de47f54-f02d-4c98-a64f-b5313b885f9e"),
                             CodeWord = "ContactsPage",
-                            DateAdded = new DateTime(2023, 1, 20, 17, 31, 40, 534, DateTimeKind.Utc).AddTicks(7072),
+                            DateAdded = new DateTime(2023, 1, 28, 20, 24, 15, 711, DateTimeKind.Utc).AddTicks(2348),
                             Description = "Contacts page",
                             Name = "Contacts | Lancer Parts",
-                            TitleImagePath = "~/img/slider1.png"
+                            TitleImagePath = "slide1.jpg"
                         });
                 });
 
@@ -165,7 +200,7 @@ namespace LancerPartsShop.Migrations
                         new
                         {
                             Id = "e4b29369-89aa-429c-96d4-2bd5267523c2",
-                            ConcurrencyStamp = "20ac616a-d015-4ce2-80c1-2ac99f33d3b2",
+                            ConcurrencyStamp = "21ebb598-00b2-45a1-bc8b-21d52f5c7257",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -265,13 +300,13 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = "7e61803d-b0bf-4db9-b850-a9ff9c75b496",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8625f33f-1a41-448c-aae1-c7c7255ae84d",
+                            ConcurrencyStamp = "b133a336-b81b-496c-befb-123477972ed0",
                             Email = "lancerparts@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "LANCERPARTS@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHnHzrFSncLJtxdZvK4qFFC+WbrklRxzoFF2t7JsObORZzE2nhsXy47qb58x6VOm8w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKnESHtZdngw2Dzg95TkXTsoXgJwHoUEOxpv9eT+LYnBpQxEJiDNE9aeDY1517NKzQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
