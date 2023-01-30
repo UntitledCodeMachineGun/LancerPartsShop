@@ -13,6 +13,7 @@ namespace LancerPartsShop.Domain
         public DbSet<TextField> TextFields { get; set; }
         public DbSet<BlogItem> BlogItems { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LancerPartsShop.Domain.Repositories.EntityFramework
 {
-	public class EFICategoryRepository : ICategoryRepository
+	public class EFCategoryRepository : ICategoryRepository
 	{
 		private readonly AppDbContext context;
 
-		public EFICategoryRepository(AppDbContext context)
+		public EFCategoryRepository(AppDbContext context)
 		{
 			this.context = context;
 		}

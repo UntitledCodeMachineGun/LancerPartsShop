@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LancerPartsShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230128202415__initial")]
+    [Migration("20230130092813__initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -100,6 +100,50 @@ namespace LancerPartsShop.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("LancerPartsShop.Domain.Entities.Product", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaKeyords")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MetaTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Subtitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Products");
+                });
+
             modelBuilder.Entity("LancerPartsShop.Domain.Entities.TextField", b =>
                 {
                     b.Property<Guid>("Id")
@@ -145,7 +189,7 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = new Guid("deae2a12-08d2-4ef7-be64-f47d18264ca0"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2023, 1, 28, 20, 24, 15, 711, DateTimeKind.Utc).AddTicks(2324),
+                            DateAdded = new DateTime(2023, 1, 30, 9, 28, 13, 197, DateTimeKind.Utc).AddTicks(4748),
                             Description = "Index page",
                             Name = "Lancer Parts",
                             TitleImagePath = "slide1.jpg"
@@ -154,7 +198,7 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = new Guid("3e23fdbf-2c09-484e-bff4-ac7acefae890"),
                             CodeWord = "PageBlog",
-                            DateAdded = new DateTime(2023, 1, 28, 20, 24, 15, 711, DateTimeKind.Utc).AddTicks(2339),
+                            DateAdded = new DateTime(2023, 1, 30, 9, 28, 13, 197, DateTimeKind.Utc).AddTicks(4766),
                             Description = "Blog page",
                             Name = "Blog | Lancer Parts",
                             TitleImagePath = "slide1.jpg"
@@ -163,7 +207,7 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = new Guid("3de47f54-f02d-4c98-a64f-b5313b885f9e"),
                             CodeWord = "ContactsPage",
-                            DateAdded = new DateTime(2023, 1, 28, 20, 24, 15, 711, DateTimeKind.Utc).AddTicks(2348),
+                            DateAdded = new DateTime(2023, 1, 30, 9, 28, 13, 197, DateTimeKind.Utc).AddTicks(4774),
                             Description = "Contacts page",
                             Name = "Contacts | Lancer Parts",
                             TitleImagePath = "slide1.jpg"
@@ -200,7 +244,7 @@ namespace LancerPartsShop.Migrations
                         new
                         {
                             Id = "e4b29369-89aa-429c-96d4-2bd5267523c2",
-                            ConcurrencyStamp = "21ebb598-00b2-45a1-bc8b-21d52f5c7257",
+                            ConcurrencyStamp = "6acfa206-7c4a-416c-be76-f8b68331df9f",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -300,13 +344,13 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = "7e61803d-b0bf-4db9-b850-a9ff9c75b496",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b133a336-b81b-496c-befb-123477972ed0",
+                            ConcurrencyStamp = "6296a8d5-c6f1-43ad-9ddf-e9b6c6e72dfa",
                             Email = "lancerparts@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "LANCERPARTS@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKnESHtZdngw2Dzg95TkXTsoXgJwHoUEOxpv9eT+LYnBpQxEJiDNE9aeDY1517NKzQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMPObTjUWnHl69Xg+6gc/MZ+cGQCKknXTfv5YLU0Zu4+cs1UF/o46ktiEEb2HLKwpQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -400,6 +444,17 @@ namespace LancerPartsShop.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("LancerPartsShop.Domain.Entities.Product", b =>
+                {
+                    b.HasOne("LancerPartsShop.Domain.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

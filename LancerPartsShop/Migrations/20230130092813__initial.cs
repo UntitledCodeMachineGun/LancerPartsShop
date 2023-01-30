@@ -216,24 +216,51 @@ namespace LancerPartsShop.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Subtitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    TitleImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MetaTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MetaDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MetaKeyords = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "e4b29369-89aa-429c-96d4-2bd5267523c2", "21ebb598-00b2-45a1-bc8b-21d52f5c7257", "admin", "ADMIN" });
+                values: new object[] { "e4b29369-89aa-429c-96d4-2bd5267523c2", "6acfa206-7c4a-416c-be76-f8b68331df9f", "admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "7e61803d-b0bf-4db9-b850-a9ff9c75b496", 0, "b133a336-b81b-496c-befb-123477972ed0", "lancerparts@email.com", true, false, null, "LANCERPARTS@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEKnESHtZdngw2Dzg95TkXTsoXgJwHoUEOxpv9eT+LYnBpQxEJiDNE9aeDY1517NKzQ==", null, false, "", false, "admin" });
+                values: new object[] { "7e61803d-b0bf-4db9-b850-a9ff9c75b496", 0, "6296a8d5-c6f1-43ad-9ddf-e9b6c6e72dfa", "lancerparts@email.com", true, false, null, "LANCERPARTS@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEMPObTjUWnHl69Xg+6gc/MZ+cGQCKknXTfv5YLU0Zu4+cs1UF/o46ktiEEb2HLKwpQ==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "TextFields",
                 columns: new[] { "Id", "CodeWord", "DateAdded", "Description", "MetaDescription", "MetaKeyords", "MetaTitle", "Name", "Subtitle", "TitleImagePath" },
                 values: new object[,]
                 {
-                    { new Guid("3de47f54-f02d-4c98-a64f-b5313b885f9e"), "ContactsPage", new DateTime(2023, 1, 28, 20, 24, 15, 711, DateTimeKind.Utc).AddTicks(2348), "Contacts page", null, null, null, "Contacts | Lancer Parts", null, "slide1.jpg" },
-                    { new Guid("3e23fdbf-2c09-484e-bff4-ac7acefae890"), "PageBlog", new DateTime(2023, 1, 28, 20, 24, 15, 711, DateTimeKind.Utc).AddTicks(2339), "Blog page", null, null, null, "Blog | Lancer Parts", null, "slide1.jpg" },
-                    { new Guid("deae2a12-08d2-4ef7-be64-f47d18264ca0"), "PageIndex", new DateTime(2023, 1, 28, 20, 24, 15, 711, DateTimeKind.Utc).AddTicks(2324), "Index page", null, null, null, "Lancer Parts", null, "slide1.jpg" }
+                    { new Guid("3de47f54-f02d-4c98-a64f-b5313b885f9e"), "ContactsPage", new DateTime(2023, 1, 30, 9, 28, 13, 197, DateTimeKind.Utc).AddTicks(4774), "Contacts page", null, null, null, "Contacts | Lancer Parts", null, "slide1.jpg" },
+                    { new Guid("3e23fdbf-2c09-484e-bff4-ac7acefae890"), "PageBlog", new DateTime(2023, 1, 30, 9, 28, 13, 197, DateTimeKind.Utc).AddTicks(4766), "Blog page", null, null, null, "Blog | Lancer Parts", null, "slide1.jpg" },
+                    { new Guid("deae2a12-08d2-4ef7-be64-f47d18264ca0"), "PageIndex", new DateTime(2023, 1, 30, 9, 28, 13, 197, DateTimeKind.Utc).AddTicks(4748), "Index page", null, null, null, "Lancer Parts", null, "slide1.jpg" }
                 });
 
             migrationBuilder.InsertData(
@@ -279,6 +306,11 @@ namespace LancerPartsShop.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_CategoryId",
+                table: "Products",
+                column: "CategoryId");
         }
 
         /// <inheritdoc />
@@ -303,7 +335,7 @@ namespace LancerPartsShop.Migrations
                 name: "BlogItems");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "TextFields");
@@ -313,6 +345,9 @@ namespace LancerPartsShop.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
         }
     }
 }
