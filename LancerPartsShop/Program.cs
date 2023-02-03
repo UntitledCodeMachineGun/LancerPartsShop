@@ -78,7 +78,8 @@ app.UseEndpoints(endpoints =>
 	endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 	endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
 	endpoints.MapControllerRoute("category", "{controller=Category}/{action=Category}/{id?}");
-	endpoints.MapControllerRoute("blog", "{controller=Blog}/{action=Blog}/{id?}");
+	endpoints.MapControllerRoute("product", "{controller=Product}/{action=Product}/{id?}");
+    endpoints.MapControllerRoute("blog", "{controller=Blog}/{action=Blog}/{id?}");
 	endpoints.MapControllerRoute("post", "{controller=Post}/{action=Post}/{id?}");
 	endpoints.MapControllerRoute("contacts", "{controller=Contacts}/{action=Contacts}");
 });

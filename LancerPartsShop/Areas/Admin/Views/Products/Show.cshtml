@@ -17,7 +17,7 @@
 				@foreach (var item in Model)
 				{
 					<div>
-						<a asp-area="" asp-controller="Product" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-info">
+						<a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@item.Id" class="btn btn-outline-info">
 							@($"{item.Name}")
 						</a>
 						|

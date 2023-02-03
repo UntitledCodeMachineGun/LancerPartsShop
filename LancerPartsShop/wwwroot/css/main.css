@@ -127,6 +127,7 @@ header .navbar.nav-2 .navbar-collapse a {
 
 .text {
     padding-top: 50px;
+    overflow-x: hidden;
 }
 
 .footer__topBorder {
@@ -302,6 +303,76 @@ header .navbar.nav-2 .navbar-collapse a {
 }
 
 /* Errors end */
+
+/* Product page */
+.card-product{
+    margin-top: 50px;
+}
+
+.side-container {
+    margin-left: 70px;
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    padding-bottom: 50px;
+}
+
+.order {
+    margin-top: 10px;
+}
+
+.nav-tabs .nav-link {
+    color: inherit;
+}
+
+    .nav-tabs .nav-link:hover {
+        color: #ffc107;
+    }
+
+.tab-pane {
+    margin-top: 10px;
+}
+
+.addict-products {
+    margin-top: 50px;
+}
+
+.products-cards {
+    margin-top: 10px;
+    display: flex;
+}
+
+.addict-product {
+    text-decoration: none;
+}
+
+.addict-product {
+    width: 100%;
+    max-height: 70px;
+    margin-top: 20px;
+}
+
+    .addict-product:hover {
+        border-style: solid;
+        border-radius: 0.25rem;
+        border-color: #ffc107;
+        border-width: 1px;
+        transform: scale(1.025);
+        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    }
+
+.addict-product span {
+    margin-left: 20px;
+}
+
+.addict-product img {
+    width: 10%;
+}
+
+
+/* Product page end*/
 
 @media screen and (max-width: 900px) {
     .cat-container {

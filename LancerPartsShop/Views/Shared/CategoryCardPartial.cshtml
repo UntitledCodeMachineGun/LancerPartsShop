@@ -1,6 +1,6 @@
 ﻿@model Category
 
-<a href="/category" class="category col-5">
+<a asp-area="" asp-controller="Category" asp-action="Index" asp-route-id="@Model.Id" class="category col-5">
     <span class="name col-6">@Model.Name</span>
     <img src="~/images/categories/@Model.TitleImagePath" alt="@Model.Name" class="col-2">
 </a>

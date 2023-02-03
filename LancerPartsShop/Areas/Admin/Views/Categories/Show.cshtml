@@ -17,9 +17,9 @@
 				@foreach (var item in Model)
 				{
 					<div>
-						<span>
+						<a asp-area="" asp-controller="Category" asp-action="Index" asp-route-id="@item.Id" class="btn btn-outline-info">
 							@($"{item.Name}")
-						</span>
+							</a>
 						|
 						<a asp-area="Admin" asp-controller="Products" asp-action="Show" asp-route-categoryId="@item.Id" class="btn btn-outline-info">Products</a>
 						|

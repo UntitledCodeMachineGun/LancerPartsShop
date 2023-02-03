@@ -54,14 +54,14 @@ namespace LancerPartsShop.Areas.Admin.Controllers
 				}
 			}
 			dataManager.Products.SaveProduct(model);
-			return RedirectToAction(nameof(ProductsController.Show), nameof(ProductsController).CutController());
+			return RedirectToAction(nameof(CategoriesController.Show), nameof(CategoriesController).CutController());
 		}
 
 		[HttpPost]
 		public IActionResult Delete(Guid id)
 		{
 			dataManager.Products.DeleteProduct(id);
-			return RedirectToAction(nameof(ProductsController.Show), nameof(ProductsController).CutController());
+			return RedirectToAction(nameof(CategoriesController.Show), nameof(CategoriesController).CutController());
 		}
 
 		private void IsImage(IFormFile file, string[] extensions)

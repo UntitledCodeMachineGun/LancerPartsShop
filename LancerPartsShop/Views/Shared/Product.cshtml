@@ -1,0 +1,99 @@
+﻿@model ProductViewModel
+@{
+    ViewBag.Title = Model.Product.MetaTitle;
+    ViewBag.Description = Model.Product.MetaDescription;
+    ViewBag.Keywords = Model.Product.MetaKeyords;
+}
+
+<section class="card-product">
+  <div class="container">
+    <div class="card-top">
+      <div class="container container-carousel card-slider col-8">
+        <div id="carouselExampleControls" class="carousel slide main__page" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="~/images/products/@Model.Product.TitleImagePath" class="d-block w-100" alt="slide1">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <div class="side-container col-4">
+        <div class="card-sidebar">
+          <div class="title">
+            <h3>@Model.Product.Name</h3>
+          </div>
+          <div class="number">
+            <p>Original number: 4448448454</p>
+          </div>
+          <div class="subtitle">
+            <p>@Model.Product.Subtitle</p>
+          </div>
+          <div class="price">
+            <span>Цена: </span><b>@Model.Product.Price грн.</b>
+          </div>
+
+          <div class="buy-block">
+            <a href="tel: 000000000" class="btn btn-outline-warning order" type="submit">Call</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card-bottom">
+      <div class="card-info">
+
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+              type="button" role="tab" aria-controls="nav-home" aria-selected="true">Description</button>
+            <button class="nav-link" id="nav-delivery-tab" data-bs-toggle="tab" data-bs-target="#nav-delivery"
+              type="button" role="tab" aria-controls="nav-delivery" aria-selected="false">Delivery</button>
+            <button class="nav-link" id="nav-pay-tab" data-bs-toggle="tab" data-bs-target="#nav-pay" type="button"
+              role="tab" aria-controls="nav-pay" aria-selected="false">Payment</button>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">@Html.Raw(Model.Product.Description)
+          </div>
+          <div class="tab-pane fade" id="nav-delivery" role="tabpanel" aria-labelledby="nav-delivery-tab">Delivery info
+          </div>
+          <div class="tab-pane fade" id="nav-pay" role="tabpanel" aria-labelledby="nav-pay-tab">Payment info</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="addict-products">
+      <h3>Another products</h3>
+      <div class="products-cards">
+      <ul class="list-group">
+        @if (Model.Products.Any())
+        {
+            @foreach (var item in Model.Products.Where(x => x.CategoryId == Model.Product.CategoryId && x.Id != Model.Product.Id))
+            {
+                <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@item.Id" class="addict-product">
+                <li class="list-group-item">
+                
+                    <img src="~/images/products/@item.TitleImagePath" alt="@item.Name">
+                    <span>@item.Name</span>
+                    <span>Number</span>
+                </li>
+                </a>
+            }
+        }
+      </ul>
+    </div>
+    </div>
+    </div>
+</section>

@@ -1,19 +1,24 @@
-﻿<a href="#">
+﻿@model Product
+
+<a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Model.Id">
   <div class="card p-3 bg-white">
-    <div class="about-product text-center mt-2"><img src="~/images/post1.jpg" class="col-12">
+    <div class="about-product text-center mt-2"><img src="~/images/products/@Model.TitleImagePath" class="col-12">
       <div>
-        <h4>Believing is seeing</h4>
-        <h6 class="mt-0 text-black-50">Apple pro display XDR</h6>
+        <h4>@Model.Name</h4>
       </div>
     </div>
+     <div class="stats mt-2">
+        <div>
+            <span>Original number: 265654312</span>
+        </div>
+        </div>
     <div class="stats mt-2">
-      <div class="d-flex justify-content-between p-price"><span>Pro Display XDR</span><span>$5,999</span>
+      <div>
+          <span>@Model.Subtitle</span>
       </div>
-      <div class="d-flex justify-content-between p-price"><span>Pro stand</span><span>$999</span></div>
-      <div class="d-flex justify-content-between p-price"><span>Vesa Mount Adapter</span><span>$199</span>
-      </div>
-    </div>
+     </div>
     <div class="d-flex justify-content-between total font-weight-bold mt-4">
-      <span>Total</span><span>$7,197.00</span></div>
+            <span>Price:</span><span><b>@Model.Price</b> uah</span>
+        </div>
   </div>
 </a>
