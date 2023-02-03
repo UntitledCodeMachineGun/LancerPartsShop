@@ -6,33 +6,38 @@ using Microsoft.AspNetCore.Mvc;
 namespace LancerPartsShop.Areas.Admin.Controllers
 {
 	[Area("Admin")]
-	public class CategoriesController : Controller
-	{
+
+	public class ProductsController : Controller
+    {
 		private readonly DataManager dataManager;
 		private readonly IWebHostEnvironment hostEnvironment;
 
 		private readonly string[] _extensions = new string[] { ".jpg", ".png" };
 
-		public CategoriesController(DataManager dataManager, IWebHostEnvironment hostEnvironment)
+        public ProductsController(DataManager dataManager, IWebHostEnvironment hostEnvironment)
 		{
 			this.dataManager = dataManager;
 			this.hostEnvironment = hostEnvironment;
 		}
 
-		public IActionResult Show()
-		{ 
-			return View(dataManager.Categories.GetCategories());
+		[HttpGet]
+		public IActionResult Show(Guid categoryId)
+		{
+			ViewBag.CategoryId = categoryId;
+			return View(dataManager.Products.GetProductsByCategory(categoryId));
 		}
 
-		public IActionResult Edit(Guid id)
+		public IActionResult Edit(Guid id, Guid categoryId)
 		{
-			var item = id == default ? new Category() : dataManager.Categories.GetCategory(id);
+			var item = id == default ? new Product() 
+			{ CategoryId = categoryId, Category = dataManager.Categories.GetCategory(categoryId) } 
+			: dataManager.Products.GetProduct(id);
 			return View(item);
 		}
 
 		[HttpPost]
 
-		public IActionResult Edit(Category model, IFormFile? titleImageFile)
+		public IActionResult Edit(Product model, IFormFile? titleImageFile)
 		{
 			IsImage(titleImageFile, _extensions);
 			if (!ModelState.IsValid)
@@ -43,20 +48,20 @@ namespace LancerPartsShop.Areas.Admin.Controllers
 			if (titleImageFile != null)
 			{
 				model.TitleImagePath = titleImageFile.FileName;
-				using (var fs = new FileStream(Path.Combine(hostEnvironment.WebRootPath, "images/categories", titleImageFile.FileName), FileMode.Create))
+				using (var fs = new FileStream(Path.Combine(hostEnvironment.WebRootPath, "images/products", titleImageFile.FileName), FileMode.Create))
 				{
 					titleImageFile.CopyTo(fs);
 				}
 			}
-			dataManager.Categories.SaveCategory(model);
-            return RedirectToAction(nameof(CategoriesController.Show), nameof(CategoriesController).CutController());
-        }
+			dataManager.Products.SaveProduct(model);
+			return RedirectToAction(nameof(ProductsController.Show), nameof(ProductsController).CutController());
+		}
 
-        [HttpPost]
+		[HttpPost]
 		public IActionResult Delete(Guid id)
 		{
-			dataManager.Categories.DeleteCategory(id);
-			return RedirectToAction(nameof(CategoriesController.Show), nameof(CategoriesController).CutController());
+			dataManager.Products.DeleteProduct(id);
+			return RedirectToAction(nameof(ProductsController.Show), nameof(ProductsController).CutController());
 		}
 
 		private void IsImage(IFormFile file, string[] extensions)

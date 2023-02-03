@@ -6,8 +6,7 @@ namespace LancerPartsShop.Domain.Entities
     {
         [Required]
         public Guid CategoryId { get; set; }
-        [Required]
-        public virtual Category Category { get; set; }
+        public virtual Category? Category { get; set; }
 
         [Required(ErrorMessage = "Fill the name of the product")]
         [Display(Name = "Product name (title)")]

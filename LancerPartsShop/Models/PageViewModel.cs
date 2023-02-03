@@ -8,5 +8,7 @@ namespace LancerPartsShop.Models
         public IQueryable<BlogItem> BlogItems { get; set; }
 
         public IQueryable<Category> Categories { get; set; }
+
+        public IQueryable<Product> Products { get; set; }
     }
 }
