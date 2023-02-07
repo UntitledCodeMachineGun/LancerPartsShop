@@ -13,6 +13,10 @@
 				<a asp-area="Admin" asp-controller="Categories" asp-action="Show" asp-route-id="" class="btn btn-outline-primary">Categories</a>
 			</div>
 			<h3>Blog items</h3>
+			<form asp-area="Admin" asp-controller="Home" asp-action="Search" method="get" class="d-flex">
+				<input class="form-control me-2" type="search" name="query" placeholder="Поиск" aria-label="Search">
+				<input class="btn btn-outline-warning" type="submit" value="Найти" />
+			</form>
 			<div class="div-box">
 				<a asp-area="Admin" asp-controller="BlogItems" asp-action="Edit" asp-route-id="" class="btn btn-outline-primary">Add news</a>
 			</div>
@@ -43,6 +47,8 @@
 		<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageIndex" class="btn btn-outline-success">Home</a>
 		<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PageBlog" class="btn btn-outline-success">Blog</a>
 		<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="ContactsPage" class="btn btn-outline-success">Contacts</a>
+		<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="DeliveryInfo" class="btn btn-outline-success">Product delivery info</a>
+		<a asp-area="Admin" asp-controller="TextFields" asp-action="Edit" asp-route-codeWord="PaymentInfo" class="btn btn-outline-success">Product payment info</a>
 	</div>
 	<div class="div-box container logout">
 		<form asp-area="" asp-controller="Account" asp-action="Logout" method="post" class="btn btn-outline-danger">

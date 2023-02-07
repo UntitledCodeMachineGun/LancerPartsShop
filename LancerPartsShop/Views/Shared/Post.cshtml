@@ -1,4 +1,11 @@
 ﻿@model BlogItem
+
+@{
+    ViewBag.Title = Model.Name + " | " + Config.CompanyName;
+    ViewBag.Description = Model.MetaDescription;
+    ViewBag.Keywords = Model.MetaKeyords;
+}
+
 <section class="post">
     <div class="container">
         <img src="~/images/@Model.TitleImagePath" alt="">

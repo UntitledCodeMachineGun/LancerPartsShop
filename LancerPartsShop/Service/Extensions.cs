@@ -20,5 +20,14 @@ namespace LancerPartsShop.Service
 
 			return returnActive ? "active" : "";
 		}
-	}
+        public static bool IsImage(IFormFile file, string[] extensions)
+        {
+			var allowedExt = new AllowedExtensionsAttribute(extensions);
+			if (allowedExt.IsImage(file))
+			{
+			return true;
+			}
+			return false;
+        }
+    }
 }

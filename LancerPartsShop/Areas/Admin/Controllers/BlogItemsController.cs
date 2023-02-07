@@ -27,13 +27,15 @@ namespace LancerPartsShop.Areas.Admin.Controllers
 		[HttpPost]
 		public IActionResult Edit(BlogItem model, IFormFile? titleImageFile)
 		{
-			IsImage(titleImageFile, _extensions);
-			if (!ModelState.IsValid)
+            if (!Extensions.IsImage(titleImageFile, _extensions))
+            {
+                ModelState.AddModelError("Image", "Image can be only in .jpg or .png extension");
+            }
+
+            if (!ModelState.IsValid)
 			{
 				return View(model);
 			}
-
-			
 
 			if (titleImageFile != null)
 			{
@@ -52,19 +54,6 @@ namespace LancerPartsShop.Areas.Admin.Controllers
 		{
 			dataManager.BlogItems.DeleteBlogItem(id);
 			return RedirectToAction(nameof(HomeController.Index), nameof(HomeController).CutController());
-		}
-
-		private void IsImage(IFormFile file, string[] extensions)
-		{
-			if (file == null)
-			{
-				return;
-			}
-			var allowedExt = new AllowedExtensionsAttribute(extensions);
-			if (!allowedExt.IsImage(file))
-			{
-				ModelState.AddModelError("Image", "Image can be only in .jpg or .png extension");
-			}
 		}
 	}
 }

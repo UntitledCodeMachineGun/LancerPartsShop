@@ -1,6 +1,13 @@
 ﻿@model ProductViewModel
 @{
-    ViewBag.Title = Model.Product.MetaTitle;
+    if (string.IsNullOrEmpty(Model.Product.MetaTitle))
+    {
+        ViewBag.Title = Model.Product.Name;
+    }
+    else
+    {
+        ViewBag.Title = Model.Product.MetaTitle;
+    }    
     ViewBag.Description = Model.Product.MetaDescription;
     ViewBag.Keywords = Model.Product.MetaKeyords;
 }
@@ -8,11 +15,11 @@
 <section class="card-product">
   <div class="container">
     <div class="card-top">
-      <div class="container container-carousel card-slider col-8">
+      <div class="container container-carousel card-slider col-md-8">
         <div id="carouselExampleControls" class="carousel slide main__page" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="~/images/products/@Model.Product.TitleImagePath" class="d-block w-100" alt="slide1">
+              <img src="~/images/products/@Model.Product.TitleImagePath" class="d-block w-100" alt="@Model.Product.TitleImagePath">
             </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -27,13 +34,13 @@
           </button>
         </div>
       </div>
-      <div class="side-container col-4">
+      <div class="side-container col-md-4">
         <div class="card-sidebar">
           <div class="title">
             <h3>@Model.Product.Name</h3>
           </div>
           <div class="number">
-            <p>Original number: 4448448454</p>
+            <p>Original number: @Model.Product.PartNumber</p>
           </div>
           <div class="subtitle">
             <p>@Model.Product.Subtitle</p>
@@ -58,17 +65,17 @@
             <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
               type="button" role="tab" aria-controls="nav-home" aria-selected="true">Description</button>
             <button class="nav-link" id="nav-delivery-tab" data-bs-toggle="tab" data-bs-target="#nav-delivery"
-              type="button" role="tab" aria-controls="nav-delivery" aria-selected="false">Delivery</button>
+              type="button" role="tab" aria-controls="nav-delivery" aria-selected="false">@Model.Delivery.Name</button>
             <button class="nav-link" id="nav-pay-tab" data-bs-toggle="tab" data-bs-target="#nav-pay" type="button"
-              role="tab" aria-controls="nav-pay" aria-selected="false">Payment</button>
+              role="tab" aria-controls="nav-pay" aria-selected="false">@Model.Payment.Name</button>
           </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">@Html.Raw(Model.Product.Description)
           </div>
-          <div class="tab-pane fade" id="nav-delivery" role="tabpanel" aria-labelledby="nav-delivery-tab">Delivery info
+          <div class="tab-pane fade" id="nav-delivery" role="tabpanel" aria-labelledby="nav-delivery-tab">@Html.Raw(Model.Delivery.Description)
           </div>
-          <div class="tab-pane fade" id="nav-pay" role="tabpanel" aria-labelledby="nav-pay-tab">Payment info</div>
+          <div class="tab-pane fade" id="nav-pay" role="tabpanel" aria-labelledby="nav-pay-tab">@Html.Raw(Model.Payment.Description)</div>
         </div>
 
       </div>
@@ -87,7 +94,8 @@
                 
                     <img src="~/images/products/@item.TitleImagePath" alt="@item.Name">
                     <span>@item.Name</span>
-                    <span>Number</span>
+                    <span>@item.PartNumber</span>
+                    <span>@item.Price UAH</span>
                 </li>
                 </a>
             }

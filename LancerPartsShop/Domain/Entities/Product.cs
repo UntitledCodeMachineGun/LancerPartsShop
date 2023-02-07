@@ -12,6 +12,9 @@ namespace LancerPartsShop.Domain.Entities
         [Display(Name = "Product name (title)")]
         public override string Name { get; set; }
 
+        [Display(Name = "Part number")]
+        public int PartNumber { get; set; }
+
         [Display(Name = "Full product text")]
         public override string? Description { get; set; }
 
@@ -22,6 +25,6 @@ namespace LancerPartsShop.Domain.Entities
         public double Price { get; set; }
 
         [Display(Name = "Image in .jpg or .png extension")]
-        public override string? TitleImagePath { get; set; } = "catgory1.jpg";
+        public override string? TitleImagePath { get; set; } = "slide1.jpg";
     }
 }

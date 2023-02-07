@@ -223,6 +223,7 @@ namespace LancerPartsShop.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PartNumber = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Subtitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
@@ -246,21 +247,23 @@ namespace LancerPartsShop.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "e4b29369-89aa-429c-96d4-2bd5267523c2", "6acfa206-7c4a-416c-be76-f8b68331df9f", "admin", "ADMIN" });
+                values: new object[] { "e4b29369-89aa-429c-96d4-2bd5267523c2", "ce1c90b3-cbc9-4640-96fa-3498c86476d8", "admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "7e61803d-b0bf-4db9-b850-a9ff9c75b496", 0, "6296a8d5-c6f1-43ad-9ddf-e9b6c6e72dfa", "lancerparts@email.com", true, false, null, "LANCERPARTS@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEMPObTjUWnHl69Xg+6gc/MZ+cGQCKknXTfv5YLU0Zu4+cs1UF/o46ktiEEb2HLKwpQ==", null, false, "", false, "admin" });
+                values: new object[] { "7e61803d-b0bf-4db9-b850-a9ff9c75b496", 0, "95403647-b3c3-4d70-b272-bd6ffdeb7dee", "lancerparts@email.com", true, false, null, "LANCERPARTS@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAECUEHDg41mOq7OegoLcMtldRy3TkhCfpy5dHmxJpngJO4FdNZJcqkKS4yhFHHGt08w==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "TextFields",
                 columns: new[] { "Id", "CodeWord", "DateAdded", "Description", "MetaDescription", "MetaKeyords", "MetaTitle", "Name", "Subtitle", "TitleImagePath" },
                 values: new object[,]
                 {
-                    { new Guid("3de47f54-f02d-4c98-a64f-b5313b885f9e"), "ContactsPage", new DateTime(2023, 1, 30, 9, 28, 13, 197, DateTimeKind.Utc).AddTicks(4774), "Contacts page", null, null, null, "Contacts | Lancer Parts", null, "slide1.jpg" },
-                    { new Guid("3e23fdbf-2c09-484e-bff4-ac7acefae890"), "PageBlog", new DateTime(2023, 1, 30, 9, 28, 13, 197, DateTimeKind.Utc).AddTicks(4766), "Blog page", null, null, null, "Blog | Lancer Parts", null, "slide1.jpg" },
-                    { new Guid("deae2a12-08d2-4ef7-be64-f47d18264ca0"), "PageIndex", new DateTime(2023, 1, 30, 9, 28, 13, 197, DateTimeKind.Utc).AddTicks(4748), "Index page", null, null, null, "Lancer Parts", null, "slide1.jpg" }
+                    { new Guid("08050526-d33e-40e9-b98d-e9f9b8160f77"), "PaymentInfo", new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3806), "Payment Info", null, null, null, "Payment", null, "slide1.jpg" },
+                    { new Guid("3de47f54-f02d-4c98-a64f-b5313b885f9e"), "ContactsPage", new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3788), "Contacts page", null, null, null, "Contacts | Lancer Parts", null, "slide1.jpg" },
+                    { new Guid("3e23fdbf-2c09-484e-bff4-ac7acefae890"), "PageBlog", new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3779), "Blog page", null, null, null, "Blog | Lancer Parts", null, "slide1.jpg" },
+                    { new Guid("913507db-c5ce-4bc2-b1f9-5e54fe570873"), "DeliveryInfo", new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3796), "Delivery Info", null, null, null, "Delivery", null, "slide1.jpg" },
+                    { new Guid("deae2a12-08d2-4ef7-be64-f47d18264ca0"), "PageIndex", new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3763), "Index page", null, null, null, "Lancer Parts", null, "slide1.jpg" }
                 });
 
             migrationBuilder.InsertData(

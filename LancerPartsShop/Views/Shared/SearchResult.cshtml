@@ -1,0 +1,27 @@
+﻿@model IQueryable<Product>
+@{
+    ViewBag.Title = ViewBag.Query;
+}
+<section class="products">
+    <div class="container">
+        <div class="product__header border-bottom">
+            <h2>Search "@ViewBag.Query"</h2>
+        </div>
+
+        <!-- PRODUCTS -->
+
+        <div class="d-flex product__container container mt-5 col-12">
+            @if (Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    @await Html.PartialAsync("ProductCardPartial", item)
+                }
+            }
+            else
+            {
+                <h2>Can`t find anything</h2>
+            }
+        </div>
+    </div>
+</section>

@@ -8,6 +8,10 @@
 <section class="admin__panel">
 	<div class="container">
 		<h3>Categories</h3>
+		<form asp-area="Admin" asp-controller="Categories" asp-action="Search" method="get" class="d-flex">
+			<input class="form-control me-2" type="search" name="query" placeholder="Поиск" aria-label="Search">
+			<input class="btn btn-outline-warning" type="submit" value="Найти" />
+		</form>
 		<div class="div-box">
 			<a asp-area="Admin" asp-controller="Categories" asp-action="Edit" asp-route-id="" class="btn btn-outline-primary">Add new</a>
 		</div>

@@ -2,6 +2,7 @@
 using LancerPartsShop.Domain.Entities;
 using LancerPartsShop.Service;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace LancerPartsShop.Areas.Admin.Controllers
 {
@@ -27,6 +28,19 @@ namespace LancerPartsShop.Areas.Admin.Controllers
 			return View(dataManager.Products.GetProductsByCategory(categoryId));
 		}
 
+		[HttpGet]
+		public IActionResult Search(Guid categoryId, string query)
+		{
+			var result = from item in dataManager.Products.GetProducts()
+						 where
+						 item.CategoryId == categoryId &&
+						 EF.Functions.Like(item.Name, $"%{query}%") ||
+						 EF.Functions.Like(item.PartNumber.ToString(), $"%{query}%")
+						 select item;
+
+			return View("Show", result);
+		}
+
 		public IActionResult Edit(Guid id, Guid categoryId)
 		{
 			var item = id == default ? new Product() 
@@ -39,7 +53,11 @@ namespace LancerPartsShop.Areas.Admin.Controllers
 
 		public IActionResult Edit(Product model, IFormFile? titleImageFile)
 		{
-			IsImage(titleImageFile, _extensions);
+			if (!Extensions.IsImage(titleImageFile, _extensions))
+			{
+                ModelState.AddModelError("Image", "Image can be only in .jpg or .png extension");
+            }
+
 			if (!ModelState.IsValid)
 			{
 				return View(model);
@@ -62,19 +80,6 @@ namespace LancerPartsShop.Areas.Admin.Controllers
 		{
 			dataManager.Products.DeleteProduct(id);
 			return RedirectToAction(nameof(CategoriesController.Show), nameof(CategoriesController).CutController());
-		}
-
-		private void IsImage(IFormFile file, string[] extensions)
-		{
-			if (file == null)
-			{
-				return;
-			}
-			var allowedExt = new AllowedExtensionsAttribute(extensions);
-			if (!allowedExt.IsImage(file))
-			{
-				ModelState.AddModelError("Image", "Image can be only in .jpg or .png extension");
-			}
 		}
 	}
 }

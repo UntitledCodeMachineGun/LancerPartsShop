@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 //ConfigureServices
 
 //Admin area policy setup
@@ -81,7 +82,8 @@ app.UseEndpoints(endpoints =>
 	endpoints.MapControllerRoute("product", "{controller=Product}/{action=Product}/{id?}");
     endpoints.MapControllerRoute("blog", "{controller=Blog}/{action=Blog}/{id?}");
 	endpoints.MapControllerRoute("post", "{controller=Post}/{action=Post}/{id?}");
-	endpoints.MapControllerRoute("contacts", "{controller=Contacts}/{action=Contacts}");
+	endpoints.MapControllerRoute("search", "{controller=Search}/{action=SearchResult}/{id?}");
+    endpoints.MapControllerRoute("contacts", "{controller=Contacts}/{action=Contacts}");
 });
 
 //app.MapGet("/", () => "Hello World!");

@@ -1,13 +1,13 @@
 ﻿@model PageViewModel
 @{
-    ViewBag.Title = Model.TextField.MetaTitle;
+    ViewBag.Title = Model.TextField.Name + " | " + Config.CompanyName;
     ViewBag.Description = Model.TextField.MetaDescription;
     ViewBag.Keywords = Model.TextField.MetaKeyords;
 }
 
 <section class="blog">
     <div class="container">
-        <h2>Блог</h2>
+        <h2>@Model.TextField.Name</h2>
     </div>
     <div class="blog-container container mt-5 col-12">
 

@@ -1,6 +1,6 @@
 ﻿ @model CategoryViewModel
 @{
-    ViewBag.Title = Model.Category.MetaTitle;
+    ViewBag.Title = Model.Category.Name + " | " + Config.CompanyName;
     ViewBag.Description = Model.Category.MetaDescription;
     ViewBag.Keywords = Model.Category.MetaKeyords;
 }
@@ -44,7 +44,7 @@
             <section class="products">
                 <div class="container">
                     <div class="product__header border-bottom">
-                        <h2>Category name</h2>
+                        <h2>@Model.Category.Name</h2>
                     </div>
 
                     <!-- PRODUCTS -->
