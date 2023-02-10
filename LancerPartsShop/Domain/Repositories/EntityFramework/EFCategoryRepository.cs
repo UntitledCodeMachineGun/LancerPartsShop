@@ -15,7 +15,7 @@ namespace LancerPartsShop.Domain.Repositories.EntityFramework
 		public void DeleteCategory(Guid id)
 		{
 			context.Categories.Remove(new Category() { Id = id });
-			context.SaveChanges();
+            context.SaveChanges();
 		}
 
 		public Category GetCategory(Guid id)

@@ -14,6 +14,7 @@
 			<input type="hidden" asp-for="CategoryId" />
 			<input type="hidden" asp-for="DateAdded" />
 			<input type="hidden" asp-for="TitleImagePath" />
+			<input type="hidden" asp-for="Images" />
 
 			<div asp-validation-summary="All"></div>
 			<div class="div-box">
@@ -43,10 +44,23 @@
 			</div>
 			<div class="div-box">
 				<label asp-for="TitleImagePath" class="form-label"></label>
-				<input type="file" name="titleImageFile" id="titleImageFile" class="form-control" />
+				<input type="file" name="titleImageFile" id="titleImageFile" class="form-control"/>
 				<div>
-					<img class="img-thumbnail" src="~/images/@Model.TitleImagePath"/>
+					<img class="img-thumbnail" src="~/images/products/@Model.TitleImagePath" />
 				</div>
+			</div>
+			<div class="div-box">
+				<label asp-for="Images" class="form-label"></label>
+				<input type="file" name="productImages" id="productImages" class="form-control" multiple />
+				@if (Model.Images != null)
+				{
+					@foreach (var image in Model.Images)
+					{
+						<div>
+							<img class="img-thumbnail" src="~/images/@image" />
+						</div>
+					}
+				}
 			</div>
 			<div class="div-box">
 				<label asp-for="MetaTitle" class="form-label"></label>

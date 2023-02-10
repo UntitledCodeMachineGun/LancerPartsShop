@@ -26,6 +26,7 @@ builder.Services.AddTransient<ITextFieldsRepository, EFTextFieldsRepository>();
 builder.Services.AddTransient<IBlogItemRepository, EFBlogRepository>();
 builder.Services.AddTransient<ICategoryRepository, EFCategoryRepository>();
 builder.Services.AddTransient<IProductRepository, EFProductRepository>();
+builder.Services.AddTransient<IImageRepository, EFImageRepository>();
 builder.Services.AddTransient<DataManager>();
 
 //Connect configuration from appsettings.json

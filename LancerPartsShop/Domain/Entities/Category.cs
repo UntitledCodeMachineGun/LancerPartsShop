@@ -13,5 +13,5 @@ namespace LancerPartsShop.Domain.Entities
 
         [Display(Name = "Image in .jpg or .png extension")]
         public override string? TitleImagePath { get; set; } = "catgory1.jpg";
-    }
+	}
 }

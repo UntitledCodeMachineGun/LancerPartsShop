@@ -2,7 +2,8 @@
 
 <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Model.Id">
   <div class="card p-3 bg-white">
-    <div class="about-product text-center mt-2"><img src="~/images/products/@Model.TitleImagePath" class="col-12">
+    <div class="about-product text-center mt-2">
+            <img src="~/images/products/@Model.TitleImagePath" class="col-12">
       <div>
         <h4>@Model.Name</h4>
       </div>

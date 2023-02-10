@@ -244,26 +244,46 @@ namespace LancerPartsShop.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DateAdded = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Images_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "e4b29369-89aa-429c-96d4-2bd5267523c2", "ce1c90b3-cbc9-4640-96fa-3498c86476d8", "admin", "ADMIN" });
+                values: new object[] { "e4b29369-89aa-429c-96d4-2bd5267523c2", "0b69541f-52f6-4bec-8f54-2bc5cea0cdd7", "admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "7e61803d-b0bf-4db9-b850-a9ff9c75b496", 0, "95403647-b3c3-4d70-b272-bd6ffdeb7dee", "lancerparts@email.com", true, false, null, "LANCERPARTS@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAECUEHDg41mOq7OegoLcMtldRy3TkhCfpy5dHmxJpngJO4FdNZJcqkKS4yhFHHGt08w==", null, false, "", false, "admin" });
+                values: new object[] { "7e61803d-b0bf-4db9-b850-a9ff9c75b496", 0, "ac564c87-3912-47b3-a4ef-792375712125", "lancerparts@email.com", true, false, null, "LANCERPARTS@EMAIL.COM", "ADMIN", "AQAAAAEAACcQAAAAEBW7rzMs8UZBKoKyvfYgmqdLa1A/ym5TY2iY4txH5Xxc3XpUEiMcbLII8qNZ5XbXUw==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "TextFields",
                 columns: new[] { "Id", "CodeWord", "DateAdded", "Description", "MetaDescription", "MetaKeyords", "MetaTitle", "Name", "Subtitle", "TitleImagePath" },
                 values: new object[,]
                 {
-                    { new Guid("08050526-d33e-40e9-b98d-e9f9b8160f77"), "PaymentInfo", new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3806), "Payment Info", null, null, null, "Payment", null, "slide1.jpg" },
-                    { new Guid("3de47f54-f02d-4c98-a64f-b5313b885f9e"), "ContactsPage", new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3788), "Contacts page", null, null, null, "Contacts | Lancer Parts", null, "slide1.jpg" },
-                    { new Guid("3e23fdbf-2c09-484e-bff4-ac7acefae890"), "PageBlog", new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3779), "Blog page", null, null, null, "Blog | Lancer Parts", null, "slide1.jpg" },
-                    { new Guid("913507db-c5ce-4bc2-b1f9-5e54fe570873"), "DeliveryInfo", new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3796), "Delivery Info", null, null, null, "Delivery", null, "slide1.jpg" },
-                    { new Guid("deae2a12-08d2-4ef7-be64-f47d18264ca0"), "PageIndex", new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3763), "Index page", null, null, null, "Lancer Parts", null, "slide1.jpg" }
+                    { new Guid("08050526-d33e-40e9-b98d-e9f9b8160f77"), "PaymentInfo", new DateTime(2023, 2, 10, 12, 37, 30, 298, DateTimeKind.Utc).AddTicks(2822), "Payment Info", null, null, null, "Payment", null, "slide1.jpg" },
+                    { new Guid("3de47f54-f02d-4c98-a64f-b5313b885f9e"), "ContactsPage", new DateTime(2023, 2, 10, 12, 37, 30, 298, DateTimeKind.Utc).AddTicks(2810), "Contacts page", null, null, null, "Contacts", null, "slide1.jpg" },
+                    { new Guid("3e23fdbf-2c09-484e-bff4-ac7acefae890"), "PageBlog", new DateTime(2023, 2, 10, 12, 37, 30, 298, DateTimeKind.Utc).AddTicks(2803), "Blog page", null, null, null, "Blog", null, "slide1.jpg" },
+                    { new Guid("913507db-c5ce-4bc2-b1f9-5e54fe570873"), "DeliveryInfo", new DateTime(2023, 2, 10, 12, 37, 30, 298, DateTimeKind.Utc).AddTicks(2816), "Delivery Info", null, null, null, "Delivery", null, "slide1.jpg" },
+                    { new Guid("deae2a12-08d2-4ef7-be64-f47d18264ca0"), "PageIndex", new DateTime(2023, 2, 10, 12, 37, 30, 298, DateTimeKind.Utc).AddTicks(2785), "Index page", null, null, null, "Lancer Parts", null, "slide1.jpg" }
                 });
 
             migrationBuilder.InsertData(
@@ -311,6 +331,11 @@ namespace LancerPartsShop.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Images_ProductId",
+                table: "Images",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
@@ -338,7 +363,7 @@ namespace LancerPartsShop.Migrations
                 name: "BlogItems");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Images");
 
             migrationBuilder.DropTable(
                 name: "TextFields");
@@ -348,6 +373,9 @@ namespace LancerPartsShop.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Categories");

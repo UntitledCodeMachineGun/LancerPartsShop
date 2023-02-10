@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LancerPartsShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230206091655__initial")]
+    [Migration("20230210123730__initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -98,6 +98,29 @@ namespace LancerPartsShop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("LancerPartsShop.Domain.Entities.Image", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("LancerPartsShop.Domain.Entities.Product", b =>
@@ -192,7 +215,7 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = new Guid("deae2a12-08d2-4ef7-be64-f47d18264ca0"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3763),
+                            DateAdded = new DateTime(2023, 2, 10, 12, 37, 30, 298, DateTimeKind.Utc).AddTicks(2785),
                             Description = "Index page",
                             Name = "Lancer Parts",
                             TitleImagePath = "slide1.jpg"
@@ -201,25 +224,25 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = new Guid("3e23fdbf-2c09-484e-bff4-ac7acefae890"),
                             CodeWord = "PageBlog",
-                            DateAdded = new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3779),
+                            DateAdded = new DateTime(2023, 2, 10, 12, 37, 30, 298, DateTimeKind.Utc).AddTicks(2803),
                             Description = "Blog page",
-                            Name = "Blog | Lancer Parts",
+                            Name = "Blog",
                             TitleImagePath = "slide1.jpg"
                         },
                         new
                         {
                             Id = new Guid("3de47f54-f02d-4c98-a64f-b5313b885f9e"),
                             CodeWord = "ContactsPage",
-                            DateAdded = new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3788),
+                            DateAdded = new DateTime(2023, 2, 10, 12, 37, 30, 298, DateTimeKind.Utc).AddTicks(2810),
                             Description = "Contacts page",
-                            Name = "Contacts | Lancer Parts",
+                            Name = "Contacts",
                             TitleImagePath = "slide1.jpg"
                         },
                         new
                         {
                             Id = new Guid("913507db-c5ce-4bc2-b1f9-5e54fe570873"),
                             CodeWord = "DeliveryInfo",
-                            DateAdded = new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3796),
+                            DateAdded = new DateTime(2023, 2, 10, 12, 37, 30, 298, DateTimeKind.Utc).AddTicks(2816),
                             Description = "Delivery Info",
                             Name = "Delivery",
                             TitleImagePath = "slide1.jpg"
@@ -228,7 +251,7 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = new Guid("08050526-d33e-40e9-b98d-e9f9b8160f77"),
                             CodeWord = "PaymentInfo",
-                            DateAdded = new DateTime(2023, 2, 6, 9, 16, 55, 443, DateTimeKind.Utc).AddTicks(3806),
+                            DateAdded = new DateTime(2023, 2, 10, 12, 37, 30, 298, DateTimeKind.Utc).AddTicks(2822),
                             Description = "Payment Info",
                             Name = "Payment",
                             TitleImagePath = "slide1.jpg"
@@ -265,7 +288,7 @@ namespace LancerPartsShop.Migrations
                         new
                         {
                             Id = "e4b29369-89aa-429c-96d4-2bd5267523c2",
-                            ConcurrencyStamp = "ce1c90b3-cbc9-4640-96fa-3498c86476d8",
+                            ConcurrencyStamp = "0b69541f-52f6-4bec-8f54-2bc5cea0cdd7",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -365,13 +388,13 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = "7e61803d-b0bf-4db9-b850-a9ff9c75b496",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "95403647-b3c3-4d70-b272-bd6ffdeb7dee",
+                            ConcurrencyStamp = "ac564c87-3912-47b3-a4ef-792375712125",
                             Email = "lancerparts@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "LANCERPARTS@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAECUEHDg41mOq7OegoLcMtldRy3TkhCfpy5dHmxJpngJO4FdNZJcqkKS4yhFHHGt08w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBW7rzMs8UZBKoKyvfYgmqdLa1A/ym5TY2iY4txH5Xxc3XpUEiMcbLII8qNZ5XbXUw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -467,6 +490,17 @@ namespace LancerPartsShop.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("LancerPartsShop.Domain.Entities.Image", b =>
+                {
+                    b.HasOne("LancerPartsShop.Domain.Entities.Product", "Product")
+                        .WithMany("Images")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("LancerPartsShop.Domain.Entities.Product", b =>
                 {
                     b.HasOne("LancerPartsShop.Domain.Entities.Category", "Category")
@@ -527,6 +561,11 @@ namespace LancerPartsShop.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("LancerPartsShop.Domain.Entities.Product", b =>
+                {
+                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,6 +3,7 @@ using LancerPartsShop.Domain.Entities;
 using LancerPartsShop.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.ObjectModel;
 
 namespace LancerPartsShop.Areas.Admin.Controllers
 {
@@ -51,35 +52,66 @@ namespace LancerPartsShop.Areas.Admin.Controllers
 
 		[HttpPost]
 
-		public IActionResult Edit(Product model, IFormFile? titleImageFile)
+		public IActionResult Edit(Product model, IFormFile? titleImageFile, ICollection<IFormFile> productImages)
 		{
+			var images = new List<Image>();
+			foreach (var image in productImages)
+			{
+				if (!Extensions.IsImage(image, _extensions))
+				{
+					ModelState.AddModelError("Image", "Image can be only in .jpg or .png extension");
+				}
+			}
+
 			if (!Extensions.IsImage(titleImageFile, _extensions))
 			{
-                ModelState.AddModelError("Image", "Image can be only in .jpg or .png extension");
-            }
+				ModelState.AddModelError("Image", "Image can be only in .jpg or .png extension");
+			}
 
 			if (!ModelState.IsValid)
 			{
 				return View(model);
 			}
 
+			foreach (var image in productImages)
+			{
+                if (image != null)
+                {
+                    using (var fs = new FileStream(Path.Combine(hostEnvironment.WebRootPath, "images/products/", image.FileName), FileMode.Create))
+                    {
+                        image.CopyTo(fs);
+                    }
+					var tmp = new Image(image.FileName, model);
+					images.Add(tmp);
+					model.Images.Add(tmp);
+                }
+            }
+
 			if (titleImageFile != null)
 			{
 				model.TitleImagePath = titleImageFile.FileName;
-				using (var fs = new FileStream(Path.Combine(hostEnvironment.WebRootPath, "images/products", titleImageFile.FileName), FileMode.Create))
+				using (var fs = new FileStream(Path.Combine(hostEnvironment.WebRootPath, "images/products/", titleImageFile.FileName), FileMode.Create))
 				{
 					titleImageFile.CopyTo(fs);
 				}
 			}
+
 			dataManager.Products.SaveProduct(model);
+
+			foreach (var image in images)
+			{ 
+				dataManager.Imgaes.SaveImage(image);
+			}
+
 			return RedirectToAction(nameof(CategoriesController.Show), nameof(CategoriesController).CutController());
 		}
 
 		[HttpPost]
 		public IActionResult Delete(Guid id)
 		{
-			dataManager.Products.DeleteProduct(id);
-			return RedirectToAction(nameof(CategoriesController.Show), nameof(CategoriesController).CutController());
-		}
-	}
+            dataManager.Products.DeleteProduct(id);
+            return RedirectToAction(nameof(CategoriesController.Show), nameof(CategoriesController).CutController());
+
+        }
+    }
 }

@@ -25,6 +25,9 @@ namespace LancerPartsShop.Domain.Entities
         public double Price { get; set; }
 
         [Display(Name = "Image in .jpg or .png extension")]
+        public virtual ICollection<Image> Images { get; set; }
+
+        [Display(Name = "Image in .jpg or .png extension")]
         public override string? TitleImagePath { get; set; } = "slide1.jpg";
     }
 }

@@ -12,6 +12,5 @@ namespace LancerPartsShop.Domain.Entities
 
         [Display(Name = "Text")]
         public override string Description { get; set; }
-
-    }
+	}
 }

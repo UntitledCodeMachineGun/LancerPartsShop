@@ -60,7 +60,7 @@ namespace LancerPartsShop.Areas.Admin.Controllers
 			if (titleImageFile != null)
 			{
 				model.TitleImagePath = titleImageFile.FileName;
-				using (var fs = new FileStream(Path.Combine(hostEnvironment.WebRootPath, "images/categories", titleImageFile.FileName), FileMode.Create))
+				using (var fs = new FileStream(Path.Combine(hostEnvironment.WebRootPath, "images/categories/", titleImageFile.FileName), FileMode.Create))
 				{
 					titleImageFile.CopyTo(fs);
 				}
