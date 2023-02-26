@@ -4,7 +4,6 @@
 
     @await Html.PartialAsync("MetaTagPartial")
     @await Html.PartialAsync("CssPartial")
-    @await Html.PartialAsync("ScriptsPartial")
 
     </head>
     
@@ -15,6 +14,8 @@
             @RenderBody()
 
         @await Html.PartialAsync("FooterPartial")
+
+    @await Html.PartialAsync("ScriptsPartial")
 
     </body>
     

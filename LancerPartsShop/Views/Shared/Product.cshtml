@@ -25,7 +25,9 @@
                       {
                           i++;
                         <div class="carousel-item" id="@i">
-                            <img src="~/images/products/@image.Path" class="d-block w-100" alt="@Model.Product.Name">
+                            <a href="~/images/products/@image.Path" data-fancybox>
+                                <img src="~/images/products/@image.Path" class="d-block w-100" alt="@Model.Product.Name">
+                            </a>
                         </div>
                       }
                     
@@ -119,3 +121,5 @@
 <script>
     document.getElementById("1").classList.add("active");
 </script>
+
+

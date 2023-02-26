@@ -13,7 +13,7 @@ namespace LancerPartsShop.Domain.Entities
         public override string Name { get; set; }
 
         [Display(Name = "Part number")]
-        public int PartNumber { get; set; }
+        public string PartNumber { get; set; }
 
         [Display(Name = "Full product text")]
         public override string? Description { get; set; }
