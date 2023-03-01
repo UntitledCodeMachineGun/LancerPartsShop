@@ -63,21 +63,25 @@ IWebHostEnvironment environment = app.Environment;
 
 
 if (environment.IsDevelopment())
-{ 
-	app.UseDeveloperExceptionPage();
+{
+
 }
 
 app.UseStaticFiles();
 
+app.UseStatusCodePagesWithRedirects("/");
+
 app.UseRouting();
 
 app.UseCookiePolicy();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
+
 app.UseEndpoints(endpoints =>
 {
-	endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute("admin", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 	endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
 	endpoints.MapControllerRoute("category", "{controller=Category}/{action=Category}/{id?}");
 	endpoints.MapControllerRoute("product", "{controller=Product}/{action=Product}/{id?}");

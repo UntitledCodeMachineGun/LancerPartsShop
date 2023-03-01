@@ -21,7 +21,7 @@ namespace LancerPartsShop.Controllers
 
             var result = from item in dataManager.Products.GetProducts()
                          where EF.Functions.Like(item.Name, $"%{query}%") ||
-                         EF.Functions.Like(item.PartNumber.ToString(), $"%{query}%")
+                         EF.Functions.Like(item.PartNumber, $"%{query}%")
                          select item;
 
             return View(result);
