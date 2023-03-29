@@ -18,6 +18,7 @@ namespace LancerPartsShop.Controllers
 			model.Product = dataManager.Products.GetProduct(id);
 			model.Products = dataManager.Products.GetProductsByCategory(model.Product.CategoryId);
 			model.Images = dataManager.Imgaes.GetImagesByProduct(id);
+			model.Categories = dataManager.Categories.GetCategories();
 			model.Delivery = dataManager.TextFields.GetTextFieldByCodeWord("DeliveryInfo");
 			model.Payment = dataManager.TextFields.GetTextFieldByCodeWord("PaymentInfo");
 			return View(model);

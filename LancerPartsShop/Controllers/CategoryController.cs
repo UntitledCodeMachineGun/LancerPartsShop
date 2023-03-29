@@ -18,6 +18,7 @@ namespace LancerPartsShop.Controllers
             var model = new CategoryViewModel();
             model.Category = dataManager.Categories.GetCategory(id);
             model.Products = dataManager.Products.GetProductsByCategory(id);
+            model.Categories = dataManager.Categories.GetCategories();
             return View(model);
         }
     }
