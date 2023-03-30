@@ -348,7 +348,14 @@ header .navbar.nav-2 .navbar-collapse a {
 /* END ADMIN */
 
 .img-thumbnail {
-    max-width: 200px;
+    width: 400px;
+}
+
+.product__images__additional {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
 }
 /* Errors */
 .validation-summary-errors ul {

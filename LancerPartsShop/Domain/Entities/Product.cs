@@ -23,11 +23,11 @@ namespace LancerPartsShop.Domain.Entities
 
         [Display(Name = "Product price")]
         public double Price { get; set; }
+        
+		[Display(Name = "Додаткові фото товару (може бути декілька) Image in .jpg or .png extension")]
+		public virtual ICollection<Image>? Images { get; set; }
 
-        [Display(Name = "Image in .jpg or .png extension")]
-        public virtual ICollection<Image> Images { get; set; }
-
-        [Display(Name = "Image in .jpg or .png extension")]
+		[Display(Name = "Головне фото (відображається на картці товару) у форматі .jpg, .png")]
         public override string? TitleImagePath { get; set; } = "slide1.jpg";
     }
 }

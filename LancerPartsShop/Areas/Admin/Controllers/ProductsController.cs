@@ -1,4 +1,5 @@
-﻿using LancerPartsShop.Domain;
+﻿using LancerPartsShop.Areas.Admin.VeiwModels;
+using LancerPartsShop.Domain;
 using LancerPartsShop.Domain.Entities;
 using LancerPartsShop.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -44,15 +45,18 @@ namespace LancerPartsShop.Areas.Admin.Controllers
 
 		public IActionResult Edit(Guid id, Guid categoryId)
 		{
+			var model = new EditProductViewModel();
 			var item = id == default ? new Product() 
 			{ CategoryId = categoryId, Category = dataManager.Categories.GetCategory(categoryId) } 
 			: dataManager.Products.GetProduct(id);
-			return View(item);
+			model.Product = item;
+			model.Images = dataManager.Imgaes.GetImagesByProduct(id);
+			return View(model);
 		}
 
 		[HttpPost]
 
-		public IActionResult Edit(Product model, IFormFile? titleImageFile, ICollection<IFormFile> productImages)
+		public IActionResult Edit(EditProductViewModel model, IFormFile? titleImageFile, ICollection<IFormFile> productImages)
 		{
 			var images = new List<Image>();
 			foreach (var image in productImages)
@@ -81,29 +85,36 @@ namespace LancerPartsShop.Areas.Admin.Controllers
                     {
                         image.CopyTo(fs);
                     }
-					var tmp = new Image(image.FileName, model);
+					var tmp = new Image(image.FileName, model.Product);
 					images.Add(tmp);
-					model.Images.Add(tmp);
+					model.Product.Images.Add(tmp);
                 }
             }
 
 			if (titleImageFile != null)
 			{
-				model.TitleImagePath = titleImageFile.FileName;
+				model.Product.TitleImagePath = titleImageFile.FileName;
 				using (var fs = new FileStream(Path.Combine(hostEnvironment.WebRootPath, "images/products/", titleImageFile.FileName), FileMode.Create))
 				{
 					titleImageFile.CopyTo(fs);
 				}
 			}
 
-			dataManager.Products.SaveProduct(model);
+			dataManager.Products.SaveProduct(model.Product);
 
 			foreach (var image in images)
 			{ 
 				dataManager.Imgaes.SaveImage(image);
 			}
 
-			return RedirectToAction(nameof(CategoriesController.Show), nameof(CategoriesController).CutController());
+			return RedirectToAction(nameof(ProductsController.Show), new { categoryId = model.Product.CategoryId });
+		}
+
+		public IActionResult DeleteImage(Guid id, Guid productId)
+		{ 
+			dataManager.Imgaes.DeleteImage(id);
+			var product = dataManager.Products.GetProduct(productId);
+			return RedirectToAction(nameof(ProductsController.Edit), nameof(ProductsController).CutController(), new { product.Id, product.CategoryId });
 		}
 
 		[HttpPost]

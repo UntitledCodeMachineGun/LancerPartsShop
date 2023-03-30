@@ -213,7 +213,7 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = new Guid("deae2a12-08d2-4ef7-be64-f47d18264ca0"),
                             CodeWord = "PageIndex",
-                            DateAdded = new DateTime(2023, 2, 15, 12, 51, 56, 861, DateTimeKind.Utc).AddTicks(7731),
+                            DateAdded = new DateTime(2023, 3, 29, 23, 3, 43, 370, DateTimeKind.Utc).AddTicks(1438),
                             Description = "Index page",
                             Name = "Lancer Parts",
                             TitleImagePath = "slide1.jpg"
@@ -222,7 +222,7 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = new Guid("3e23fdbf-2c09-484e-bff4-ac7acefae890"),
                             CodeWord = "PageBlog",
-                            DateAdded = new DateTime(2023, 2, 15, 12, 51, 56, 861, DateTimeKind.Utc).AddTicks(7751),
+                            DateAdded = new DateTime(2023, 3, 29, 23, 3, 43, 370, DateTimeKind.Utc).AddTicks(1454),
                             Description = "Blog page",
                             Name = "Blog",
                             TitleImagePath = "slide1.jpg"
@@ -231,7 +231,7 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = new Guid("3de47f54-f02d-4c98-a64f-b5313b885f9e"),
                             CodeWord = "ContactsPage",
-                            DateAdded = new DateTime(2023, 2, 15, 12, 51, 56, 861, DateTimeKind.Utc).AddTicks(7759),
+                            DateAdded = new DateTime(2023, 3, 29, 23, 3, 43, 370, DateTimeKind.Utc).AddTicks(1463),
                             Description = "Contacts page",
                             Name = "Contacts",
                             TitleImagePath = "slide1.jpg"
@@ -240,7 +240,7 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = new Guid("913507db-c5ce-4bc2-b1f9-5e54fe570873"),
                             CodeWord = "DeliveryInfo",
-                            DateAdded = new DateTime(2023, 2, 15, 12, 51, 56, 861, DateTimeKind.Utc).AddTicks(7766),
+                            DateAdded = new DateTime(2023, 3, 29, 23, 3, 43, 370, DateTimeKind.Utc).AddTicks(1469),
                             Description = "Delivery Info",
                             Name = "Delivery",
                             TitleImagePath = "slide1.jpg"
@@ -249,7 +249,7 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = new Guid("08050526-d33e-40e9-b98d-e9f9b8160f77"),
                             CodeWord = "PaymentInfo",
-                            DateAdded = new DateTime(2023, 2, 15, 12, 51, 56, 861, DateTimeKind.Utc).AddTicks(7772),
+                            DateAdded = new DateTime(2023, 3, 29, 23, 3, 43, 370, DateTimeKind.Utc).AddTicks(1475),
                             Description = "Payment Info",
                             Name = "Payment",
                             TitleImagePath = "slide1.jpg"
@@ -286,7 +286,7 @@ namespace LancerPartsShop.Migrations
                         new
                         {
                             Id = "e4b29369-89aa-429c-96d4-2bd5267523c2",
-                            ConcurrencyStamp = "14fd302e-6617-4b94-9443-3e27f9d26e99",
+                            ConcurrencyStamp = "d54843eb-96ad-4ba0-940c-a0a229108cc4",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -386,13 +386,13 @@ namespace LancerPartsShop.Migrations
                         {
                             Id = "7e61803d-b0bf-4db9-b850-a9ff9c75b496",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0f3cfaec-c022-4671-a17b-58d3b3969918",
+                            ConcurrencyStamp = "019b7b2e-3568-4e3d-aeee-78bf9b428b41",
                             Email = "lancerparts@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "LANCERPARTS@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAELJSRpViOa1xnYORUTrB827rIO/8BQ8uDtGYjCa3DmE2LLw1TIWG1ie+MCbcczdOTQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH38RtjnVZL2ppReozE9d3b1zPQp+z8pRP/fAhLvTXaOJLQ7nrF23vdXcRAlYtHmtw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

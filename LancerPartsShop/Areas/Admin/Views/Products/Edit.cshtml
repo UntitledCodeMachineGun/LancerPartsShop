@@ -1,81 +1,89 @@
-﻿@model Product
+﻿@model EditProductViewModel
 @{
-	string title = $"Editing {Model.Name}";
+	string title = $"Editing {Model.Product.Name}";
 	ViewBag.Title = title;
+
 }
 
 <script src="~/js/ckeditor/ckeditor.js"></script>
 
 <div class="container">
 	<h2>@title</h2>
+	<p style="color: red;">Спочатку видалити бажані картинки якщо треба, потім редагувати інформацію!</p>
 	<div>
 		<form asp-area="Admin" asp-controller="Products" asp-action="Edit" method="post" enctype="multipart/form-data">
-			<input type="hidden" asp-for="Id" />
-			<input type="hidden" asp-for="CategoryId" />
-			<input type="hidden" asp-for="DateAdded" />
-			<input type="hidden" asp-for="TitleImagePath" />
-			<input type="hidden" asp-for="Images" />
+			<input type="hidden" asp-for="Product.Id" />
+			<input type="hidden" asp-for="Product.CategoryId" />
+			<input type="hidden" asp-for="Product.DateAdded" />
+			<input type="hidden" asp-for="Product.TitleImagePath" />
+			<input type="hidden" asp-for="Product.Images" />
 
 			<div asp-validation-summary="All"></div>
 			<div class="div-box">
-				<label asp-for="Name" class="form-label"></label>
-				<input asp-for="Name" class="form-control" />
-				<span asp-validation-for="Name"></span>
+				<label asp-for="Product.Name" class="form-label"></label>
+				<input asp-for="Product.Name" class="form-control" />
+				<span asp-validation-for="Product.Name"></span>
 			</div>
 			<div class="div-box">
-				<label asp-for="PartNumber" class="form-label"></label>
-				<input asp-for="PartNumber" class="form-control" />
-				<span asp-validation-for="PartNumber"></span>
+				<label asp-for="Product.PartNumber" class="form-label"></label>
+				<input asp-for="Product.PartNumber" class="form-control" />
+				<span asp-validation-for="Product.PartNumber"></span>
 			</div>
 			<div class="div-box">
-				<label asp-for="Price" class="form-label"></label>
-				<input asp-for="Price" class="form-control" />
-				<span asp-validation-for="Price"></span>
+				<label asp-for="Product.Price" class="form-label"></label>
+				<input asp-for="Product.Price" class="form-control" />
+				<span asp-validation-for="Product.Price"></span>
 			</div>
 			<div class="div-box">
-				<label asp-for="Subtitle" class="form-label"></label>
-				<input asp-for="Subtitle" class="form-control" />
-				<span asp-validation-for="Subtitle"></span>
+				<label asp-for="Product.Subtitle" class="form-label"></label>
+				<input asp-for="Product.Subtitle" class="form-control" />
+				<span asp-validation-for="Product.Subtitle"></span>
 			</div>
 			<div class="div-box">
-				<label asp-for="Description" class="form-label"></label>
-				<textarea asp-for="Description" class="form-control"></textarea>
-				<span asp-validation-for="Description"></span>
+				<label asp-for="Product.Description" class="form-label"></label>
+				<textarea asp-for="Product.Description" class="form-control"></textarea>
+				<span asp-validation-for="Product.Description"></span>
 			</div>
 			<div class="div-box">
-				<label asp-for="TitleImagePath" class="form-label"></label>
+				<label asp-for="Product.TitleImagePath" class="form-label"></label>
 				<input type="file" name="titleImageFile" id="titleImageFile" class="form-control"/>
 				<div>
-					<img class="img-thumbnail" src="~/images/products/@Model.TitleImagePath" />
+					<img class="img-thumbnail" src="~/images/products/@Model.Product.TitleImagePath" />
 				</div>
 			</div>
 			<div class="div-box">
-				<label asp-for="Images" class="form-label"></label>
+				<label asp-for="Product.Images" class="form-label"></label>
 				<input type="file" name="productImages" id="productImages" class="form-control" multiple />
+				<div class="product__images__additional">
 				@if (Model.Images != null)
 				{
 					@foreach (var image in Model.Images)
 					{
-						<div>
-							<img class="img-thumbnail" src="~/images/@image" />
-						</div>
+						
+							<img class="img-thumbnail" src="~/images/@image.Path" />
+							<a  asp-area="Admin" asp-controller="Products" asp-action="DeleteImage" asp-route-id="@image.Id"
+							asp-route-productId="@Model.Product.Id" class="btn btn-outline-danger">
+								Delete
+							</a>
+						
 					}
 				}
+				</div>
 			</div>
 			<div class="div-box">
-				<label asp-for="MetaTitle" class="form-label"></label>
-				<input asp-for="MetaTitle" class="form-control" />
-				<span asp-validation-for="MetaTitle"></span>
+				<label asp-for="Product.MetaTitle" class="form-label"></label>
+				<input asp-for="Product.MetaTitle" class="form-control" />
+				<span asp-validation-for="Product.MetaTitle"></span>
 			</div>
 			<div class="div-box">
-				<label asp-for="MetaDescription" class="form-label"></label>
-				<input asp-for="MetaDescription" class="form-control" />
-				<span asp-validation-for="MetaDescription"></span>
+				<label asp-for="Product.MetaDescription" class="form-label"></label>
+				<input asp-for="Product.MetaDescription" class="form-control" />
+				<span asp-validation-for="Product.MetaDescription"></span>
 			</div>
 			<div class="div-box">
-				<label asp-for="MetaKeyords" class="form-label"></label>
-				<input asp-for="MetaKeyords" class="form-control" />
-				<span asp-validation-for="MetaKeyords"></span>
+				<label asp-for="Product.MetaKeyords" class="form-label"></label>
+				<input asp-for="Product.MetaKeyords" class="form-control" />
+				<span asp-validation-for="Product.MetaKeyords"></span>
 			</div>
 			<input type="submit" value="Save" class="btn btn-outline-primary" />
 		</form>
@@ -84,7 +92,7 @@
 
 <script>
 	window.onload = function() {
-		var newCKEdit = CKEDITOR.replace('@Html.IdFor(x => x.Description)');
+		var newCKEdit = CKEDITOR.replace('@Html.IdFor(x => x.Product.Description)');
 		newCKEdit.updateElement();
 	}
 </script>
