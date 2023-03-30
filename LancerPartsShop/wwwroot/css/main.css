@@ -133,6 +133,10 @@ header .navbar.nav-2 .navbar-collapse a {
     box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
 
+.category__summary_btn {
+    color: gray !important;
+}
+
 .category__list {
     height: 50px;
     display: flex;
@@ -454,6 +458,9 @@ header .navbar.nav-2 .navbar-collapse a {
         .news-container .news-card, .blog-container .news-card {
             width: fit-content;
         }
+    .news-card {
+        height: 450px !important;
+    }
 
     .navbar.nav-2 .nav-item {
         border-right: 0 !important;

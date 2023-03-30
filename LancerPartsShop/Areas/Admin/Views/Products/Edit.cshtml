@@ -60,7 +60,7 @@
 					@foreach (var image in Model.Images)
 					{
 						
-							<img class="img-thumbnail" src="~/images/@image.Path" />
+							<img class="img-thumbnail" src="~/images/products/@image.Path" />
 							<a  asp-area="Admin" asp-controller="Products" asp-action="DeleteImage" asp-route-id="@image.Id"
 							asp-route-productId="@Model.Product.Id" class="btn btn-outline-danger">
 								Delete

@@ -8,13 +8,22 @@
    <section class="cat-main">
         <div class="container ">
 
-       <div class="category__list">
-            @foreach(var item in Model.Categories.Where(x => x.Id != Model.Category.Id))
-            {
-                <a class="category__list__item" asp-area="" asp-controller="Category" asp-action="Index" asp-route-id="@item.Id">@item.Name</a>
-            }
+            
+            <details>
+            <summary class="btn">
+                <h5 class="btn btn-outline-dark">Інші категорії</h5>
+                </summary>
+            <div class="category__list">
+                @foreach (var item in Model.Categories.Where(x => x.Id != Model.Category.Id))
+                {
+                    <a class="category__list__item" asp-area="" asp-controller="Category" asp-action="Index" asp-route-id="@item.Id">@item.Name</a>
+                }
 
-       </div>
+            </div>
+            </details>
+
+            
+
         <hr>
 
             <section class="products">
